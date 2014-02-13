@@ -1,0 +1,158 @@
+﻿@model MAB.ContextInspector.Models.ContextInspectorViewModel
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width" />
+        <title>Index</title>
+        <style type="text/css">
+            
+            *, *:before, *:after {
+                -moz-box-sizing: border-box;
+                -webkit-box-sizing: border-box;
+                box-sizing: border-box;
+            }
+
+            body {
+                margin: 0;
+                padding: 0;
+                font-family: Helvetica, Arial, 'DejaVu Sans', 'Liberation Sans', Freesans, sans-serif;
+                font-size: 14px;
+            }
+
+            table {
+                margin: 5px;
+                border-collapse: collapse;
+                border-spacing: 0;
+            }
+
+            td, th {
+                border: 1px solid #ddd;
+                text-align: left;
+                vertical-align: top;
+                padding: 6px 30px 6px 10px;
+            }
+
+            tr.data:nth-child(odd) {
+                background-color: #F5F5F5;
+            }
+
+            tr.data:hover {
+                background-color: #b0c3ff;
+            }
+
+            pre {
+                outline: none;
+                padding: 0;
+                margin: 0;
+            }
+
+            .string {
+                color: green;
+            }
+
+            .number {
+                color: #a70000;
+            }
+
+            .boolean {
+                color: blue;
+            }
+
+            .null {
+                color: magenta;
+            }
+
+            .key {
+                color: #000000;
+            }
+
+            .varkey {
+                font-family: monospace;
+            }
+
+            .main th {
+                background-color: #00487d;
+                border-color: #00487d;
+                color: #fff;
+            }
+
+        </style>
+    </head>
+    <body>
+        <table>
+            <tr class="main">
+                <th colspan="3">Application</th>
+            </tr>
+            <tr>
+                <th>Key</th>
+                <th>Type</th>
+                <th>Contents</th>
+            </tr>
+            @foreach (var variable in Model.ApplicationVariables)
+            {
+                var isObject = variable.Value.Item1 == "object";
+
+                <tr class="data">
+                    <th class="varkey">@variable.Key</th>
+                    <td>@variable.Value.Item1</td>
+                    <td class="value">@variable.Value.Item2</td>
+                </tr>
+            }
+        </table>
+        <table>
+            <tr class="main">
+                <th colspan="3">Session</th>
+            </tr>
+            <tr>
+                <th>Key</th>
+                <th>Type</th>
+                <th>Contents</th>
+            </tr>
+            @foreach (var variable in Model.SessionVariables)
+            {
+                var isObject = variable.Value.Item1 == "object";
+
+                <tr class="data">
+                    <th class="varkey">@variable.Key</th>
+                    <td>@variable.Value.Item1</td>
+                    <td class="value">@variable.Value.Item2</td>
+                </tr>
+            }
+        </table>
+        <script type="text/javascript">
+            function syntaxHighlight(json) {
+                if(json.indexOf('{') != -1)
+                    json = JSON.stringify(JSON.parse(json), undefined, 4);
+
+                json = json.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+                return json.replace(/("(\\u[a-zA-Z0-9]{4}|\\[^u]|[^\\"])*"(\s*:)?|\b(true|false|null)\b|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?)/g, function (match) {
+                    var cls = 'number';
+                    if (/^"/.test(match)) {
+                        if (/:$/.test(match)) {
+                            cls = 'key';
+                            match = match.replace(/\"/gi, '')
+                        } else {
+                            cls = 'string';
+                        }
+                    } else if (/true|false/.test(match)) {
+                        cls = 'boolean';
+                    } else if (/null/.test(match)) {
+                        cls = 'null';
+                    }
+                    return '<span class="' + cls + '">' + match + '</span>';
+                });
+            }
+
+            var elements = document.getElementsByClassName('value');
+            for (var i = 0; i < elements.length; i++) {
+                elements[i].innerHTML = '<pre>' + syntaxHighlight(elements[i].innerHTML) + '</pre>';
+            }
+        </script>
+    </body>
+</html>
