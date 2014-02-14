@@ -59,28 +59,28 @@ WriteLiteral(" type=\"text/css\"");
 WriteLiteral(">\r\n            \r\n            *, *:before, *:after {\r\n                -moz-box-siz" +
 "ing: border-box;\r\n                -webkit-box-sizing: border-box;\r\n             " +
 "   box-sizing: border-box;\r\n            }\r\n\r\n            body {\r\n               " +
-" margin: 0;\r\n                padding: 5px;\r\n                font-family: Helveti" +
-"ca, Arial, \'DejaVu Sans\', \'Liberation Sans\', Freesans, sans-serif;\r\n            " +
-"    font-size: 14px;\r\n            }\r\n\r\n            table {\r\n                marg" +
-"in: 0;\r\n                border-collapse: collapse;\r\n                border-spaci" +
-"ng: 0;\r\n                width: 100%;\r\n            }\r\n\r\n            td, th {\r\n   " +
-"             border: 1px solid #ddd;\r\n                text-align: left;\r\n       " +
-"         vertical-align: top;\r\n                padding: 6px 30px 6px 10px;\r\n    " +
-"        }\r\n\r\n            tr.data:nth-child(odd) {\r\n                background-co" +
-"lor: #F5F5F5;\r\n            }\r\n\r\n            tr.data:hover {\r\n                bac" +
-"kground-color: #b0c3ff;\r\n            }\r\n\r\n            #col-key {\r\n              " +
-"  width: 25%;\r\n            }\r\n            #col-type {\r\n                width: 10" +
-"%;\r\n            }\r\n            #col-contents {\r\n                width: 65%;\r\n   " +
-"         }\r\n            \r\n            pre {\r\n                outline: none;\r\n   " +
-"             padding: 0;\r\n                margin: 0;\r\n            }\r\n\r\n         " +
-"   .string {\r\n                color: green;\r\n            }\r\n\r\n            .numbe" +
-"r {\r\n                color: #a70000;\r\n            }\r\n\r\n            .boolean {\r\n " +
-"               color: blue;\r\n            }\r\n\r\n            .null {\r\n             " +
-"   color: magenta;\r\n            }\r\n\r\n            .key {\r\n                color: " +
-"#000000;\r\n            }\r\n\r\n            .varkey, .vartype {\r\n                font" +
-"-family: monospace;\r\n            }\r\n\r\n            .main th {\r\n                ba" +
-"ckground-color: #00487d;\r\n                border-color: #00487d;\r\n              " +
-"  color: #fff;\r\n            }\r\n\r\n        </style>\r\n    </head>\r\n<body>\r\n");
+" margin: 0;\r\n                padding: 0;\r\n                font-family: Helvetica" +
+", Arial, \'DejaVu Sans\', \'Liberation Sans\', Freesans, sans-serif;\r\n              " +
+"  font-size: 14px;\r\n            }\r\n\r\n            table {\r\n                margin" +
+": 0;\r\n                border-collapse: collapse;\r\n                border-spacing" +
+": 0;\r\n                width: 100%;\r\n            }\r\n\r\n            td, th {\r\n     " +
+"           border: 1px solid #ddd;\r\n                text-align: left;\r\n         " +
+"       vertical-align: top;\r\n                padding: 6px 30px 6px 10px;\r\n      " +
+"      }\r\n\r\n            tr.data:nth-child(odd) {\r\n                background-colo" +
+"r: #F5F5F5;\r\n            }\r\n\r\n            tr.data:hover {\r\n                backg" +
+"round-color: #b0c3ff;\r\n            }\r\n\r\n            #col-key {\r\n                " +
+"width: 25%;\r\n            }\r\n            #col-type {\r\n                width: 10%;" +
+"\r\n            }\r\n            #col-contents {\r\n                width: 65%;\r\n     " +
+"       }\r\n            \r\n            pre {\r\n                outline: none;\r\n     " +
+"           padding: 0;\r\n                margin: 0;\r\n            }\r\n\r\n           " +
+" .string {\r\n                color: green;\r\n            }\r\n\r\n            .number " +
+"{\r\n                color: #a70000;\r\n            }\r\n\r\n            .boolean {\r\n   " +
+"             color: blue;\r\n            }\r\n\r\n            .null {\r\n               " +
+" color: magenta;\r\n            }\r\n\r\n            .key {\r\n                color: #0" +
+"00000;\r\n            }\r\n\r\n            .varkey, .vartype {\r\n                font-f" +
+"amily: monospace;\r\n            }\r\n\r\n            .main th {\r\n                back" +
+"ground-color: #00487d;\r\n                border-color: #00487d;\r\n                " +
+"color: #fff;\r\n            }\r\n\r\n        </style>\r\n    </head>\r\n<body>\r\n");
 
             
             #line 99 "..\..\Views\ContextInspector\Index.cshtml"
