@@ -22,7 +22,7 @@
                 margin: 0;
                 padding: 0;
                 font-family: Helvetica, Arial, 'DejaVu Sans', 'Liberation Sans', Freesans, sans-serif;
-                font-size: 14px;
+                font-size: 12px;
             }
 
             table {
@@ -39,7 +39,7 @@
                 padding: 6px 30px 6px 10px;
             }
 
-            tr.data:nth-child(odd) {
+            tr.data:nth-child(even) {
                 background-color: #F5F5F5;
             }
 
@@ -93,16 +93,6 @@
                 color: #fff;
             }
 
-            #tooltip {
-                position: absolute;
-                bottom: 0; 
-                right: 0;
-                width: 300px;
-                height: 1em;
-                background-color: #000;
-                color: #fff;
-            }
-
         </style>
     </head>
 <body>
@@ -117,11 +107,11 @@
             <tr class="main">
                 <th colspan="3">Cache</th>
             </tr>
-            <tr>
+            @*<tr>
                 <th>Key</th>
                 <th>Type</th>
                 <th>Contents</th>
-            </tr>
+            </tr>*@
             @foreach (var variable in Model.CacheVariables)
             {
                 <tr class="data">
@@ -143,11 +133,11 @@
             <tr class="main">
                 <th colspan="3">Application</th>
             </tr>
-            <tr>
+            @*<tr>
                 <th>Key</th>
                 <th>Type</th>
                 <th>Contents</th>
-            </tr>
+            </tr>*@
             @foreach (var variable in Model.ApplicationVariables)
             {
                 <tr class="data">
@@ -169,11 +159,11 @@
             <tr class="main">
                 <th colspan="3">Session</th>
             </tr>
-            <tr>
+            @*<tr>
                 <th>Key</th>
                 <th>Type</th>
                 <th>Contents</th>
-            </tr>
+            </tr>*@
             @foreach (var variable in Model.SessionVariables)
             {
                 <tr class="data">
@@ -184,46 +174,41 @@
             }
         </table>
     }
-    <div id="tooltip"></div>
     <script type="text/javascript">
-        function syntaxHighlight(json) {
-            if (json.indexOf('{') != -1)
-                json = JSON.stringify(JSON.parse(json), undefined, 4);
+        var MAB = {
+            ContextInspector: {
+                syntaxHighlight: function (json) {
+                    if (json.indexOf('{') != -1)
+                        json = JSON.stringify(JSON.parse(json), undefined, 4);
 
-            json = json.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
-            return json.replace(/("(\\u[a-zA-Z0-9]{4}|\\[^u]|[^\\"])*"(\s*:)?|\b(true|false|null)\b|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?)/g, function (match) {
-                var cls = 'number';
-                if (/^"/.test(match)) {
-                    if (/:$/.test(match)) {
-                        cls = 'key';
-                        match = match.replace(/\"/gi, '')
-                    } else {
-                        cls = 'string';
+                    json = json.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+                    return json.replace(/("(\\u[a-zA-Z0-9]{4}|\\[^u]|[^\\"])*"(\s*:)?|\b(true|false|null)\b|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?)/g, function (match) {
+                        var cls = 'number';
+                        if (/^"/.test(match)) {
+                            if (/:$/.test(match)) {
+                                cls = 'key';
+                                match = match.replace(/\"/gi, '')
+                            } else {
+                                cls = 'string';
+                            }
+                        } else if (/true|false/.test(match)) {
+                            cls = 'boolean';
+                        } else if (/null/.test(match)) {
+                            cls = 'null';
+                        }
+                        return '<span class="' + cls + '">' + match + '</span>';
+                    });
+                },
+                init: function () {
+                    var elements = document.getElementsByClassName('value');
+                    for (var i = 0; i < elements.length; i++) {
+                        elements[i].innerHTML = '<pre>' + MAB.ContextInspector.syntaxHighlight(elements[i].innerHTML) + '</pre>';
                     }
-                } else if (/true|false/.test(match)) {
-                    cls = 'boolean';
-                } else if (/null/.test(match)) {
-                    cls = 'null';
                 }
-                return '<span class="' + cls + '">' + match + '</span>';
-            });
-        }
-
-        function addEvent(evnt, elem, func) {
-            if (elem.addEventListener)  // W3C DOM
-                elem.addEventListener(evnt, func, false);
-            else if (elem.attachEvent) { // IE DOM
-                elem.attachEvent("on" + evnt, func);
             }
-            else { // No much to do
-                elem["on" + evnt] = func;
-            }
-        }
+        };
 
-        var elements = document.getElementsByClassName('value');
-        for (var i = 0; i < elements.length; i++) {
-            elements[i].innerHTML = '<pre>' + syntaxHighlight(elements[i].innerHTML) + '</pre>';
-        }
+        MAB.ContextInspector.init();
     </script>
 </body>
 
