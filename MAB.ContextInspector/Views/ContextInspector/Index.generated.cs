@@ -59,26 +59,167 @@ WriteLiteral(" type=\"text/css\"");
 WriteLiteral(">\r\n            \r\n            *, *:before, *:after {\r\n                -moz-box-siz" +
 "ing: border-box;\r\n                -webkit-box-sizing: border-box;\r\n             " +
 "   box-sizing: border-box;\r\n            }\r\n\r\n            body {\r\n               " +
-" margin: 0;\r\n                padding: 0;\r\n                font-family: Helvetica" +
-", Arial, \'DejaVu Sans\', \'Liberation Sans\', Freesans, sans-serif;\r\n              " +
-"  font-size: 14px;\r\n            }\r\n\r\n            table {\r\n                margin" +
-": 5px;\r\n                border-collapse: collapse;\r\n                border-spaci" +
-"ng: 0;\r\n            }\r\n\r\n            td, th {\r\n                border: 1px solid" +
-" #ddd;\r\n                text-align: left;\r\n                vertical-align: top;\r" +
-"\n                padding: 6px 30px 6px 10px;\r\n            }\r\n\r\n            tr.da" +
-"ta:nth-child(odd) {\r\n                background-color: #F5F5F5;\r\n            }\r\n" +
-"\r\n            tr.data:hover {\r\n                background-color: #b0c3ff;\r\n     " +
-"       }\r\n\r\n            pre {\r\n                outline: none;\r\n                p" +
-"adding: 0;\r\n                margin: 0;\r\n            }\r\n\r\n            .string {\r\n" +
-"                color: green;\r\n            }\r\n\r\n            .number {\r\n         " +
-"       color: #a70000;\r\n            }\r\n\r\n            .boolean {\r\n               " +
-" color: blue;\r\n            }\r\n\r\n            .null {\r\n                color: mage" +
-"nta;\r\n            }\r\n\r\n            .key {\r\n                color: #000000;\r\n    " +
-"        }\r\n\r\n            .varkey {\r\n                font-family: monospace;\r\n   " +
-"         }\r\n\r\n            .main th {\r\n                background-color: #00487d;" +
-"\r\n                border-color: #00487d;\r\n                color: #fff;\r\n        " +
-"    }\r\n\r\n        </style>\r\n    </head>\r\n    <body>\r\n        <table>\r\n           " +
-" <tr");
+" margin: 0;\r\n                padding: 5px;\r\n                font-family: Helveti" +
+"ca, Arial, \'DejaVu Sans\', \'Liberation Sans\', Freesans, sans-serif;\r\n            " +
+"    font-size: 14px;\r\n            }\r\n\r\n            table {\r\n                marg" +
+"in: 0;\r\n                border-collapse: collapse;\r\n                border-spaci" +
+"ng: 0;\r\n                width: 100%;\r\n            }\r\n\r\n            td, th {\r\n   " +
+"             border: 1px solid #ddd;\r\n                text-align: left;\r\n       " +
+"         vertical-align: top;\r\n                padding: 6px 30px 6px 10px;\r\n    " +
+"        }\r\n\r\n            tr.data:nth-child(odd) {\r\n                background-co" +
+"lor: #F5F5F5;\r\n            }\r\n\r\n            tr.data:hover {\r\n                bac" +
+"kground-color: #b0c3ff;\r\n            }\r\n\r\n            #col-key {\r\n              " +
+"  width: 25%;\r\n            }\r\n            #col-type {\r\n                width: 10" +
+"%;\r\n            }\r\n            #col-contents {\r\n                width: 65%;\r\n   " +
+"         }\r\n            \r\n            pre {\r\n                outline: none;\r\n   " +
+"             padding: 0;\r\n                margin: 0;\r\n            }\r\n\r\n         " +
+"   .string {\r\n                color: green;\r\n            }\r\n\r\n            .numbe" +
+"r {\r\n                color: #a70000;\r\n            }\r\n\r\n            .boolean {\r\n " +
+"               color: blue;\r\n            }\r\n\r\n            .null {\r\n             " +
+"   color: magenta;\r\n            }\r\n\r\n            .key {\r\n                color: " +
+"#000000;\r\n            }\r\n\r\n            .varkey, .vartype {\r\n                font" +
+"-family: monospace;\r\n            }\r\n\r\n            .main th {\r\n                ba" +
+"ckground-color: #00487d;\r\n                border-color: #00487d;\r\n              " +
+"  color: #fff;\r\n            }\r\n\r\n        </style>\r\n    </head>\r\n<body>\r\n");
+
+            
+            #line 99 "..\..\Views\ContextInspector\Index.cshtml"
+    
+            
+            #line default
+            #line hidden
+            
+            #line 99 "..\..\Views\ContextInspector\Index.cshtml"
+     if (Model.CacheVariables.Count > 0)
+    {
+
+            
+            #line default
+            #line hidden
+WriteLiteral("        <table>\r\n            <colgroup>\r\n                <col");
+
+WriteLiteral(" id=\"col-key\"");
+
+WriteLiteral(" />\r\n                <col");
+
+WriteLiteral(" id=\"col-type\"");
+
+WriteLiteral(" />\r\n                <col");
+
+WriteLiteral(" id=\"col-contents\"");
+
+WriteLiteral(" />\r\n            </colgroup>\r\n            <tr");
+
+WriteLiteral(" class=\"main\"");
+
+WriteLiteral(">\r\n                <th");
+
+WriteLiteral(" colspan=\"3\"");
+
+WriteLiteral(">Cache</th>\r\n            </tr>\r\n            <tr>\r\n                <th>Key</th>\r\n " +
+"               <th>Type</th>\r\n                <th>Contents</th>\r\n            </t" +
+"r>\r\n");
+
+            
+            #line 115 "..\..\Views\ContextInspector\Index.cshtml"
+            
+            
+            #line default
+            #line hidden
+            
+            #line 115 "..\..\Views\ContextInspector\Index.cshtml"
+             foreach (var variable in Model.CacheVariables)
+            {
+                var isObject = variable.Value.Item1 == "object";
+
+
+            
+            #line default
+            #line hidden
+WriteLiteral("                <tr");
+
+WriteLiteral(" class=\"data\"");
+
+WriteLiteral(">\r\n                    <th");
+
+WriteLiteral(" class=\"varkey\"");
+
+WriteLiteral(">");
+
+            
+            #line 120 "..\..\Views\ContextInspector\Index.cshtml"
+                                  Write(variable.Key);
+
+            
+            #line default
+            #line hidden
+WriteLiteral("</th>\r\n                    <td");
+
+WriteLiteral(" class=\"vartype\"");
+
+WriteLiteral(">");
+
+            
+            #line 121 "..\..\Views\ContextInspector\Index.cshtml"
+                                   Write(variable.Value.Item1);
+
+            
+            #line default
+            #line hidden
+WriteLiteral("</td>\r\n                    <td");
+
+WriteLiteral(" class=\"value\"");
+
+WriteLiteral(">");
+
+            
+            #line 122 "..\..\Views\ContextInspector\Index.cshtml"
+                                 Write(variable.Value.Item2);
+
+            
+            #line default
+            #line hidden
+WriteLiteral("</td>\r\n                </tr>\r\n");
+
+            
+            #line 124 "..\..\Views\ContextInspector\Index.cshtml"
+            }
+
+            
+            #line default
+            #line hidden
+WriteLiteral("        </table>\r\n");
+
+            
+            #line 126 "..\..\Views\ContextInspector\Index.cshtml"
+    }
+
+            
+            #line default
+            #line hidden
+WriteLiteral("    ");
+
+            
+            #line 127 "..\..\Views\ContextInspector\Index.cshtml"
+     if (Model.ApplicationVariables.Count > 0)
+    {
+
+            
+            #line default
+            #line hidden
+WriteLiteral("        <table>\r\n            <colgroup>\r\n                <col");
+
+WriteLiteral(" id=\"col-key\"");
+
+WriteLiteral(" />\r\n                <col");
+
+WriteLiteral(" id=\"col-type\"");
+
+WriteLiteral(" />\r\n                <col");
+
+WriteLiteral(" id=\"col-contents\"");
+
+WriteLiteral(" />\r\n            </colgroup>\r\n            <tr");
 
 WriteLiteral(" class=\"main\"");
 
@@ -91,13 +232,13 @@ WriteLiteral(">Application</th>\r\n            </tr>\r\n            <tr>\r\n    
 "   </tr>\r\n");
 
             
-            #line 97 "..\..\Views\ContextInspector\Index.cshtml"
+            #line 143 "..\..\Views\ContextInspector\Index.cshtml"
             
             
             #line default
             #line hidden
             
-            #line 97 "..\..\Views\ContextInspector\Index.cshtml"
+            #line 143 "..\..\Views\ContextInspector\Index.cshtml"
              foreach (var variable in Model.ApplicationVariables)
             {
                 var isObject = variable.Value.Item1 == "object";
@@ -117,17 +258,21 @@ WriteLiteral(" class=\"varkey\"");
 WriteLiteral(">");
 
             
-            #line 102 "..\..\Views\ContextInspector\Index.cshtml"
+            #line 148 "..\..\Views\ContextInspector\Index.cshtml"
                                   Write(variable.Key);
 
             
             #line default
             #line hidden
-WriteLiteral("</th>\r\n                    <td>");
+WriteLiteral("</th>\r\n                    <td");
+
+WriteLiteral(" class=\"vartype\"");
+
+WriteLiteral(">");
 
             
-            #line 103 "..\..\Views\ContextInspector\Index.cshtml"
-                   Write(variable.Value.Item1);
+            #line 149 "..\..\Views\ContextInspector\Index.cshtml"
+                                   Write(variable.Value.Item1);
 
             
             #line default
@@ -139,7 +284,7 @@ WriteLiteral(" class=\"value\"");
 WriteLiteral(">");
 
             
-            #line 104 "..\..\Views\ContextInspector\Index.cshtml"
+            #line 150 "..\..\Views\ContextInspector\Index.cshtml"
                                  Write(variable.Value.Item2);
 
             
@@ -148,13 +293,44 @@ WriteLiteral(">");
 WriteLiteral("</td>\r\n                </tr>\r\n");
 
             
-            #line 106 "..\..\Views\ContextInspector\Index.cshtml"
+            #line 152 "..\..\Views\ContextInspector\Index.cshtml"
             }
 
             
             #line default
             #line hidden
-WriteLiteral("        </table>\r\n        <table>\r\n            <tr");
+WriteLiteral("        </table>\r\n");
+
+            
+            #line 154 "..\..\Views\ContextInspector\Index.cshtml"
+    }
+
+            
+            #line default
+            #line hidden
+WriteLiteral("    ");
+
+            
+            #line 155 "..\..\Views\ContextInspector\Index.cshtml"
+     if (Model.SessionVariables.Count > 0)
+    {
+
+            
+            #line default
+            #line hidden
+WriteLiteral("        <table>\r\n            <colgroup>\r\n                <col");
+
+WriteLiteral(" id=\"col-key\"");
+
+WriteLiteral(" />\r\n                <col");
+
+WriteLiteral(" id=\"col-type\"");
+
+WriteLiteral(" />\r\n                <col");
+
+WriteLiteral(" id=\"col-contents\"");
+
+WriteLiteral(" />\r\n            </colgroup>\r\n            <tr");
 
 WriteLiteral(" class=\"main\"");
 
@@ -167,13 +343,13 @@ WriteLiteral(">Session</th>\r\n            </tr>\r\n            <tr>\r\n        
 "/tr>\r\n");
 
             
-            #line 117 "..\..\Views\ContextInspector\Index.cshtml"
+            #line 171 "..\..\Views\ContextInspector\Index.cshtml"
             
             
             #line default
             #line hidden
             
-            #line 117 "..\..\Views\ContextInspector\Index.cshtml"
+            #line 171 "..\..\Views\ContextInspector\Index.cshtml"
              foreach (var variable in Model.SessionVariables)
             {
                 var isObject = variable.Value.Item1 == "object";
@@ -193,17 +369,21 @@ WriteLiteral(" class=\"varkey\"");
 WriteLiteral(">");
 
             
-            #line 122 "..\..\Views\ContextInspector\Index.cshtml"
+            #line 176 "..\..\Views\ContextInspector\Index.cshtml"
                                   Write(variable.Key);
 
             
             #line default
             #line hidden
-WriteLiteral("</th>\r\n                    <td>");
+WriteLiteral("</th>\r\n                    <td");
+
+WriteLiteral(" class=\"vartype\"");
+
+WriteLiteral(">");
 
             
-            #line 123 "..\..\Views\ContextInspector\Index.cshtml"
-                   Write(variable.Value.Item1);
+            #line 177 "..\..\Views\ContextInspector\Index.cshtml"
+                                   Write(variable.Value.Item1);
 
             
             #line default
@@ -215,7 +395,7 @@ WriteLiteral(" class=\"value\"");
 WriteLiteral(">");
 
             
-            #line 124 "..\..\Views\ContextInspector\Index.cshtml"
+            #line 178 "..\..\Views\ContextInspector\Index.cshtml"
                                  Write(variable.Value.Item2);
 
             
@@ -224,46 +404,56 @@ WriteLiteral(">");
 WriteLiteral("</td>\r\n                </tr>\r\n");
 
             
-            #line 126 "..\..\Views\ContextInspector\Index.cshtml"
+            #line 180 "..\..\Views\ContextInspector\Index.cshtml"
             }
 
             
             #line default
             #line hidden
-WriteLiteral("        </table>\r\n        <script");
+WriteLiteral("        </table>\r\n");
+
+            
+            #line 182 "..\..\Views\ContextInspector\Index.cshtml"
+    }
+
+            
+            #line default
+            #line hidden
+WriteLiteral("    <script");
 
 WriteLiteral(" type=\"text/javascript\"");
 
 WriteLiteral(@">
-            function syntaxHighlight(json) {
-                if(json.indexOf('{') != -1)
-                    json = JSON.stringify(JSON.parse(json), undefined, 4);
+        function syntaxHighlight(json) {
+            if (json.indexOf('{') != -1)
+                json = JSON.stringify(JSON.parse(json), undefined, 4);
 
-                json = json.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
-                return json.replace(/(""(\\u[a-zA-Z0-9]{4}|\\[^u]|[^\\""])*""(\s*:)?|\b(true|false|null)\b|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?)/g, function (match) {
-                    var cls = 'number';
-                    if (/^""/.test(match)) {
-                        if (/:$/.test(match)) {
-                            cls = 'key';
-                            match = match.replace(/\""/gi, '')
-                        } else {
-                            cls = 'string';
-                        }
-                    } else if (/true|false/.test(match)) {
-                        cls = 'boolean';
-                    } else if (/null/.test(match)) {
-                        cls = 'null';
+            json = json.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+            return json.replace(/(""(\\u[a-zA-Z0-9]{4}|\\[^u]|[^\\""])*""(\s*:)?|\b(true|false|null)\b|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?)/g, function (match) {
+                var cls = 'number';
+                if (/^""/.test(match)) {
+                    if (/:$/.test(match)) {
+                        cls = 'key';
+                        match = match.replace(/\""/gi, '')
+                    } else {
+                        cls = 'string';
                     }
-                    return '<span class=""' + cls + '"">' + match + '</span>';
-                });
-            }
+                } else if (/true|false/.test(match)) {
+                    cls = 'boolean';
+                } else if (/null/.test(match)) {
+                    cls = 'null';
+                }
+                return '<span class=""' + cls + '"">' + match + '</span>';
+            });
+        }
 
-            var elements = document.getElementsByClassName('value');
-            for (var i = 0; i < elements.length; i++) {
-                elements[i].innerHTML = '<pre>' + syntaxHighlight(elements[i].innerHTML) + '</pre>';
-            }
-        </script>
-    </body>
+        var elements = document.getElementsByClassName('value');
+        for (var i = 0; i < elements.length; i++) {
+            elements[i].innerHTML = '<pre>' + syntaxHighlight(elements[i].innerHTML) + '</pre>';
+        }
+    </script>
+</body>
+
 </html>
 ");
 
