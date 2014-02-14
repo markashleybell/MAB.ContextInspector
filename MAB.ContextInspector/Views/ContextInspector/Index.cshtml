@@ -93,6 +93,16 @@
                 color: #fff;
             }
 
+            #tooltip {
+                position: absolute;
+                bottom: 0; 
+                right: 0;
+                width: 300px;
+                height: 1em;
+                background-color: #000;
+                color: #fff;
+            }
+
         </style>
     </head>
 <body>
@@ -114,12 +124,10 @@
             </tr>
             @foreach (var variable in Model.CacheVariables)
             {
-                var isObject = variable.Value.Item1 == "object";
-
                 <tr class="data">
                     <th class="varkey">@variable.Key</th>
-                    <td class="vartype">@variable.Value.Item1</td>
-                    <td class="value">@variable.Value.Item2</td>
+                    <td class="vartype"><a title="@variable.Value.FullTypeName">@variable.Value.ShortTypeName</a></td>
+                    <td class="value">@variable.Value.Item</td>
                 </tr>
             }
         </table>
@@ -142,12 +150,10 @@
             </tr>
             @foreach (var variable in Model.ApplicationVariables)
             {
-                var isObject = variable.Value.Item1 == "object";
-
                 <tr class="data">
                     <th class="varkey">@variable.Key</th>
-                    <td class="vartype">@variable.Value.Item1</td>
-                    <td class="value">@variable.Value.Item2</td>
+                    <td class="vartype"><a title="@variable.Value.FullTypeName">@variable.Value.ShortTypeName</a></td>
+                    <td class="value">@variable.Value.Item</td>
                 </tr>
             }
         </table>
@@ -170,16 +176,15 @@
             </tr>
             @foreach (var variable in Model.SessionVariables)
             {
-                var isObject = variable.Value.Item1 == "object";
-
                 <tr class="data">
                     <th class="varkey">@variable.Key</th>
-                    <td class="vartype">@variable.Value.Item1</td>
-                    <td class="value">@variable.Value.Item2</td>
+                    <td class="vartype"><a title="@variable.Value.FullTypeName">@variable.Value.ShortTypeName</a></td>
+                    <td class="value">@variable.Value.Item</td>
                 </tr>
             }
         </table>
     }
+    <div id="tooltip"></div>
     <script type="text/javascript">
         function syntaxHighlight(json) {
             if (json.indexOf('{') != -1)
@@ -202,6 +207,17 @@
                 }
                 return '<span class="' + cls + '">' + match + '</span>';
             });
+        }
+
+        function addEvent(evnt, elem, func) {
+            if (elem.addEventListener)  // W3C DOM
+                elem.addEventListener(evnt, func, false);
+            else if (elem.attachEvent) { // IE DOM
+                elem.attachEvent("on" + evnt, func);
+            }
+            else { // No much to do
+                elem["on" + evnt] = func;
+            }
         }
 
         var elements = document.getElementsByClassName('value');

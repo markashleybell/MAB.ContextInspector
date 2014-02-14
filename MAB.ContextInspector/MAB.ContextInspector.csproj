@@ -89,6 +89,7 @@
   <ItemGroup>
     <Compile Include="App_Start\RazorGeneratorMvcStart.cs" />
     <Compile Include="Controllers\ContextInspectorController.cs" />
+    <Compile Include="Models\ContextInspectorItemInfo.cs" />
     <Compile Include="Models\ContextInspectorViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Views\ContextInspector\Index.generated.cs">

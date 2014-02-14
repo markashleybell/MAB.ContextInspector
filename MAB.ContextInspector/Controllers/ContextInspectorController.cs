@@ -14,11 +14,28 @@ namespace MAB.ContextInspector.Controllers
 {
     public static class ContextInspectorExtensions
     {
-        public static void AddVariable(this Dictionary<string, Tuple<string, string>> collection, string key, object item)
+        public static void AddVariable(this Dictionary<string, ContextInspectorItemInfo> collection, string key, object item)
         {
             var obj = JsonConvert.SerializeObject(item);
-            var type = item.GetType().ToString().ToLowerInvariant();
-            collection.Add(key, new Tuple<string, string>((type.IndexOf("anonymous") != -1) ? "object" : (type.StartsWith("system")) ? type.Substring(type.IndexOf('.') + 1) : type, obj));
+            var typeName = item.GetType().ToString();
+            var shortTypeName = "";
+
+            // If it's an anonymous type, just refer to it as object
+            if (typeName.ToLowerInvariant().IndexOf("anonymous") != -1)
+            {
+                typeName = "System.Object";
+                shortTypeName = "Object";
+            }
+            else // Remove all the namespacing for the short version of the type name
+            {
+                shortTypeName = typeName.Substring(typeName.LastIndexOf('.') + 1);
+            }
+            
+            collection.Add(key, new ContextInspectorItemInfo {
+                FullTypeName = typeName,
+                ShortTypeName = shortTypeName,
+                Item = obj
+            });
         }
     }
 
@@ -26,20 +43,23 @@ namespace MAB.ContextInspector.Controllers
     {
         public ActionResult Index()
         {
+            // Add cache contents
             var cache = MemoryCache.Default;
-            var cacheVariables = new Dictionary<string, Tuple<string, string>>();
+            var cacheVariables = new Dictionary<string, ContextInspectorItemInfo>();
 
             foreach (var item in cache)
                 cacheVariables.AddVariable(item.Key, item.Value);
 
+            // Add session variables
             var session = this.HttpContext.Session;
-            var sessionVariables = new Dictionary<string, Tuple<string, string>>();
+            var sessionVariables = new Dictionary<string, ContextInspectorItemInfo>();
 
             foreach (string key in session.Keys)
                 sessionVariables.AddVariable(key, session[key]);
 
+            // Add application variables
             var application = this.HttpContext.Application;
-            var applicationVariables = new Dictionary<string, Tuple<string, string>>();
+            var applicationVariables = new Dictionary<string, ContextInspectorItemInfo>();
 
             foreach (string key in application.Keys)
                 applicationVariables.AddVariable(key, application[key]);

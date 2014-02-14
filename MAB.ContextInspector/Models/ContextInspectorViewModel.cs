@@ -8,8 +8,8 @@ namespace MAB.ContextInspector.Models
 {
     public class ContextInspectorViewModel
     {
-        public Dictionary<string, Tuple<string, string>> CacheVariables { get; set; }
-        public Dictionary<string, Tuple<string, string>> SessionVariables { get; set; }
-        public Dictionary<string, Tuple<string, string>> ApplicationVariables { get; set; }
+        public Dictionary<string, ContextInspectorItemInfo> CacheVariables { get; set; }
+        public Dictionary<string, ContextInspectorItemInfo> SessionVariables { get; set; }
+        public Dictionary<string, ContextInspectorItemInfo> ApplicationVariables { get; set; }
     }
 }
