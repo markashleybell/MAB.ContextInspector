@@ -1,0 +1,32 @@
+﻿#mab-contextinspector {
+    position: absolute; 
+    width: 80%; 
+    height: 550px; 
+    right: 10px; 
+    bottom: 30px; 
+    background-color: #fff; 
+    border: solid 2px #000;
+    display: none;
+}
+
+#mab-contextinspector-toggle {
+    display: block;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    padding: 0 10px;
+    background-color: #000;
+    color: #fff;
+    position: fixed;
+    bottom: 0;
+    right: 10px;
+    width: 120px;
+    height: 30px;
+    line-height: 30px;
+    text-decoration: none;
+    text-align: right;
+}
+
+#mab-contextinspector-toggle.open {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}

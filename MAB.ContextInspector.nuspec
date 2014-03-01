@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+    <metadata>
+        <id>mab.ContextInspector</id>
+        <version>0.1.4</version>
+        <authors>Mark Ashley Bell</authors>
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <description>Inspect Session, Application and Cache variables in ASP.NET MVC applications.</description>
+        <dependencies>
+            <dependency id="RazorGenerator.Mvc" version="2.2.1" />
+            <dependency id="WebActivatorEx" version="2.0.4" />
+        </dependencies>
+    </metadata>
+    <files>
+        <file src="MAB.ContextInspector\Content\mab.contextinspector.css" target="Content\Content\mab.contextinspector.css" />
+        <file src="MAB.ContextInspector\Scripts\mab.contextinspector.js" target="Content\Scripts\mab.contextinspector.js" />
+        <file src="MAB.ContextInspector\bin\Release\MAB.ContextInspector.dll" target="lib\MAB.ContextInspector.dll" />
+    </files>
+</package>

@@ -2,10 +2,11 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.WebPages;
 using RazorGenerator.Mvc;
+using System.Web.Optimization;
 
-[assembly: WebActivatorEx.PostApplicationStartMethod(typeof(MAB.ContextInspector.App_Start.RazorGeneratorMvcStart), "Start")]
+[assembly: WebActivatorEx.PostApplicationStartMethod(typeof(MAB.ContextInspector.RazorGeneratorMvcStart), "Start")]
 
-namespace MAB.ContextInspector.App_Start {
+namespace MAB.ContextInspector {
     public static class RazorGeneratorMvcStart {
         public static void Start() {
             var engine = new PrecompiledMvcEngine(typeof(RazorGeneratorMvcStart).Assembly) {
@@ -16,6 +17,9 @@ namespace MAB.ContextInspector.App_Start {
 
             // StartPage lookups are done by WebPages. 
             VirtualPathFactoryManager.RegisterVirtualPathFactory(engine);
+
+            //
+            BundleConfig.RegisterBundles(BundleTable.Bundles);
         }
     }
 }
