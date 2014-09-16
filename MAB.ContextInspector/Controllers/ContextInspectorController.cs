@@ -16,7 +16,6 @@ namespace MAB.ContextInspector.Controllers
     {
         public static void AddVariable(this Dictionary<string, ContextInspectorItemInfo> collection, string key, object item)
         {
-            var obj = JsonConvert.SerializeObject(item);
             var typeName = item.GetType().ToString();
             var shortTypeName = "";
 
@@ -30,12 +29,25 @@ namespace MAB.ContextInspector.Controllers
             {
                 shortTypeName = typeName.Substring(typeName.LastIndexOf('.') + 1);
             }
-            
-            collection.Add(key, new ContextInspectorItemInfo {
-                FullTypeName = typeName,
-                ShortTypeName = shortTypeName,
-                Item = obj
-            });
+
+            try
+            {
+                var obj = JsonConvert.SerializeObject(item);
+
+                collection.Add(key, new ContextInspectorItemInfo {
+                    FullTypeName = typeName,
+                    ShortTypeName = shortTypeName,
+                    Item = obj
+                });
+            }
+            catch(Exception ex)
+            {
+                collection.Add(key, new ContextInspectorItemInfo {
+                    FullTypeName = typeName,
+                    ShortTypeName = shortTypeName,
+                    Item = "COULD NOT SERIALIZE: " + ex.Message
+                });
+            }
         }
     }
 
@@ -47,7 +59,9 @@ namespace MAB.ContextInspector.Controllers
             var cache = MemoryCache.Default;
             var cacheVariables = new Dictionary<string, ContextInspectorItemInfo>();
 
-            foreach (var item in cache)
+            // Cached EF metadata causes a StackOverFlowException when serializing to JSON,
+            // plus we don't care about it anyway so just filter it out
+            foreach (var item in cache.Where(x => !x.Key.StartsWith("MetadataPrototypes::")))
                 cacheVariables.AddVariable(item.Key, item.Value);
 
             // Add session variables
