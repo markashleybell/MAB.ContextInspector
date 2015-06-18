@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
     <metadata>
         <id>mab.ContextInspector</id>
-        <version>0.1.5</version>
+        <version>0.5.0.0</version>
         <authors>Mark Ashley Bell</authors>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
         <description>Inspect Session, Application and Cache variables in ASP.NET MVC applications.</description>
