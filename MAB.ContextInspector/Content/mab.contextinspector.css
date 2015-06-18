@@ -1,12 +1,13 @@
 ﻿#mab-contextinspector {
     position: absolute; 
-    width: 80%; 
+    width: 100%; 
     height: 550px; 
-    right: 10px; 
-    bottom: 30px; 
+    left: 0; 
+    bottom: 0; 
     background-color: #fff; 
-    border: solid 2px #000;
-    display: none;
+    border-top: solid 1px #000;
+    x-display: none;
+    overflow: auto;
 }
 
 #mab-contextinspector-toggle {
@@ -27,6 +28,73 @@
 }
 
 #mab-contextinspector-toggle.open {
-    border-top-left-radius: 0;
-    border-top-right-radius: 0;
+    bottom: 550px;
 }
+
+table {
+                margin: 0;
+                border-collapse: collapse;
+                border-spacing: 0;
+                width: 100%;
+            }
+
+            td, th {
+                border: 1px solid #ddd;
+                text-align: left;
+                vertical-align: top;
+                padding: 6px 30px 6px 10px;
+            }
+
+            tr.data:nth-child(even) {
+                background-color: #F5F5F5;
+            }
+
+            tr.data:hover {
+                background-color: #b0c3ff;
+            }
+
+            #col-key {
+                width: 25%;
+            }
+            #col-type {
+                width: 10%;
+            }
+            #col-contents {
+                width: 65%;
+            }
+            
+            pre {
+                outline: none;
+                padding: 0;
+                margin: 0;
+            }
+
+            .string {
+                color: green;
+            }
+
+            .number {
+                color: #a70000;
+            }
+
+            .boolean {
+                color: blue;
+            }
+
+            .null {
+                color: magenta;
+            }
+
+            .key {
+                color: #000000;
+            }
+
+            .varkey, .vartype {
+                font-family: monospace;
+            }
+
+            .main th {
+                background-color: #00487d;
+                border-color: #00487d;
+                color: #fff;
+            }
