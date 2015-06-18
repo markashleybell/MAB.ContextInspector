@@ -97,12 +97,16 @@ WriteLiteral("\r\n    </head>\r\n<body>\r\n");
             
             #line default
             #line hidden
-WriteLiteral("\r\n");
+WriteLiteral("\r\n    <script");
+
+WriteLiteral(" type=\"text/javascript\"");
+
+WriteLiteral(">\r\n        var _CI_STANDALONE = true;\r\n    </script>\r\n");
 
 WriteLiteral("    ");
 
             
-            #line 31 "..\..\Views\ContextInspector\Index.cshtml"
+            #line 34 "..\..\Views\ContextInspector\Index.cshtml"
 Write(Scripts.Render("~/bundles/mab.contextinspector.js"));
 
             

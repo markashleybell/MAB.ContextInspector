@@ -68,35 +68,42 @@ var MAB = {
             });
         };
 
-        var _init = function () {
-            var elements = document.getElementsByClassName('value');
-            for (var i = 0; i < elements.length; i++) {
-                elements[i].innerHTML = '<pre>' + _syntaxHighlight(elements[i].innerHTML) + '</pre>';
-            }
+        var _init = function (standalone) {
+            
+            if (!standalone) {
+                var container = document.createElement('div');
+                container.id = 'mab-contextinspector';
 
-            var container = document.createElement('div');
-            container.id = 'mab-contextinspector';
+                document.body.appendChild(container);
 
-            document.body.appendChild(container);
+                var request = new XMLHttpRequest();
+                request.open('GET', '/contextinspector/data', true);
 
-            var request = new XMLHttpRequest();
-            request.open('GET', '/contextinspector/data', true);
+                request.onload = function () {
+                    if (request.status >= 200 && request.status < 400) {
+                        container.innerHTML = request.responseText;
 
-            request.onload = function () {
-                if (request.status >= 200 && request.status < 400) {
-                    // Success!
-                    container.innerHTML = request.responseText;
-                } else {
-                    // We reached our target server, but it returned an error
+                        var elements = document.getElementsByClassName('value');
+                        for (var i = 0; i < elements.length; i++) {
+                            elements[i].innerHTML = '<pre>' + _syntaxHighlight(elements[i].innerHTML) + '</pre>';
+                        }
 
+                    } else {
+                        container.innerHTML = '<p>Context data loading failed.</p>';
+                    }
+                };
+
+                request.onerror = function () {
+                    // There was a connection error of some sort
+                };
+
+                request.send();
+            } else {
+                var elements = document.getElementsByClassName('value');
+                for (var i = 0; i < elements.length; i++) {
+                    elements[i].innerHTML = '<pre>' + _syntaxHighlight(elements[i].innerHTML) + '</pre>';
                 }
-            };
-
-            request.onerror = function () {
-                // There was a connection error of some sort
-            };
-
-            request.send();
+            }
         };
 
         return {
@@ -105,7 +112,7 @@ var MAB = {
     }())
 };
 
-MAB.CI.init();
+MAB.CI.init(typeof _CI_STANDALONE !== 'undefined');
 
 
 
