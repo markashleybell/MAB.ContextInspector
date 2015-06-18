@@ -100,9 +100,14 @@
     <Compile Include="Models\ContextInspectorViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Views\ContextInspector\Index.generated.cs">
+      <DependentUpon>Index.cshtml</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Index.cshtml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ContextInspector\Data.generated.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Data.cshtml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup />
@@ -112,13 +117,17 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Scripts\mab.contextinspector.js" />
-    <Content Include="Views\ContextInspector\Index.cshtml">
+    <Content Include="Views\ContextInspector\Data.cshtml">
       <Generator>RazorGenerator</Generator>
-      <LastGenOutput>Index.generated.cs</LastGenOutput>
+      <LastGenOutput>Data.generated.cs</LastGenOutput>
     </Content>
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
+    <Content Include="Views\ContextInspector\Index.cshtml">
+      <Generator>RazorGenerator</Generator>
+      <LastGenOutput>Index.generated.cs</LastGenOutput>
+    </Content>
     <None Include="Views\Web.config">
       <SubType>Designer</SubType>
     </None>

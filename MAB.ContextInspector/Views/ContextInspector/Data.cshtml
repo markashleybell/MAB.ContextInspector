@@ -1,0 +1,86 @@
+﻿@model MAB.ContextInspector.Models.ContextInspectorViewModel
+
+@{
+    Layout = null;
+}
+
+
+    @if (Model.CacheVariables.Count > 0)
+    {
+        <table>
+            <colgroup>
+                <col id="col-key" />
+                <col id="col-type" />
+                <col id="col-contents" />
+            </colgroup>
+            <tr class="main">
+                <th colspan="3">Cache</th>
+            </tr>
+            @*<tr>
+                <th>Key</th>
+                <th>Type</th>
+                <th>Contents</th>
+            </tr>*@
+            @foreach (var variable in Model.CacheVariables)
+            {
+                <tr class="data">
+                    <th class="varkey">@variable.Key</th>
+                    <td class="vartype"><a title="@variable.Value.FullTypeName">@variable.Value.ShortTypeName</a></td>
+                    <td class="value">@variable.Value.Item</td>
+                </tr>
+            }
+        </table>
+    }
+    @if (Model.ApplicationVariables.Count > 0)
+    {
+        <table>
+            <colgroup>
+                <col id="col-key" />
+                <col id="col-type" />
+                <col id="col-contents" />
+            </colgroup>
+            <tr class="main">
+                <th colspan="3">Application</th>
+            </tr>
+            @*<tr>
+                <th>Key</th>
+                <th>Type</th>
+                <th>Contents</th>
+            </tr>*@
+            @foreach (var variable in Model.ApplicationVariables)
+            {
+                <tr class="data">
+                    <th class="varkey">@variable.Key</th>
+                    <td class="vartype"><a title="@variable.Value.FullTypeName">@variable.Value.ShortTypeName</a></td>
+                    <td class="value">@variable.Value.Item</td>
+                </tr>
+            }
+        </table>
+    }
+    @if (Model.SessionVariables.Count > 0)
+    {
+        <table>
+            <colgroup>
+                <col id="col-key" />
+                <col id="col-type" />
+                <col id="col-contents" />
+            </colgroup>
+            <tr class="main">
+                <th colspan="3">Session</th>
+            </tr>
+            @*<tr>
+                <th>Key</th>
+                <th>Type</th>
+                <th>Contents</th>
+            </tr>*@
+            @foreach (var variable in Model.SessionVariables)
+            {
+                <tr class="data">
+                    <th class="varkey">@variable.Key</th>
+                    <td class="vartype"><a title="@variable.Value.FullTypeName">@variable.Value.ShortTypeName</a></td>
+                    <td class="value">@variable.Value.Item</td>
+                </tr>
+            }
+        </table>
+    }
+

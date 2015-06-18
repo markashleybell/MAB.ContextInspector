@@ -55,6 +55,11 @@ namespace MAB.ContextInspector.Controllers
     {
         public ActionResult Index()
         {
+            return View();
+        }
+
+        public ActionResult Data()
+        {
             // Add cache contents
             var cache = MemoryCache.Default;
             var cacheVariables = new Dictionary<string, ContextInspectorItemInfo>();
