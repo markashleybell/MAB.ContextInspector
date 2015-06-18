@@ -76,6 +76,20 @@ var MAB = {
 
                 document.body.appendChild(container);
 
+                var toggle = document.createElement('a');
+                toggle.id = 'mab-contextinspector-toggle';
+                toggle.text = 'Inspect Context';
+                toggle.href = '#';
+
+                document.body.appendChild(toggle);
+
+                toggle.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    this.className = (this.className === 'open') ? '' : 'open';
+                });
+
+                toggle.className = 'open';
+
                 var request = new XMLHttpRequest();
                 request.open('GET', '/contextinspector/data', true);
 
