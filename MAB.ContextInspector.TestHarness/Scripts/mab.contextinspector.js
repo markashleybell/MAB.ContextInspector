@@ -75,7 +75,8 @@ var MAB = {
         };
 
         var _init = function (standalone) {
-            
+            // If this is an in-page inspector, load the data dynamically 
+            // and set up the panel toggle button
             if (!standalone) {
                 var cookieKey = 'mab.contextinspector.stayopen';
 
@@ -100,9 +101,9 @@ var MAB = {
                 toggle.addEventListener('click', function (e) {
                     e.preventDefault();
                     _toggleClass(this, 'open');
-                    var container = document.getElementById('mab-contextinspector');
-                    _toggleClass(container, 'open');
-                    container = null;
+                    var ic = document.getElementById('mab-contextinspector');
+                    _toggleClass(ic, 'open');
+                    ic = null;
                     if (this.className.indexOf('open') !== -1) {
                         _setCookie(cookieKey, 1);
                     } else {
@@ -114,21 +115,25 @@ var MAB = {
                 request.open('GET', '/contextinspector/data', true);
 
                 request.onload = function () {
+                    var ic = document.getElementById('mab-contextinspector');
                     if (request.status >= 200 && request.status < 400) {
-                        container.innerHTML = request.responseText;
-
+                        ic.innerHTML = request.responseText;
                         var elements = document.getElementsByClassName('value');
                         for (var i = 0; i < elements.length; i++) {
                             elements[i].innerHTML = '<pre>' + _syntaxHighlight(elements[i].innerHTML) + '</pre>';
                         }
 
                     } else {
-                        container.innerHTML = '<p>Context data loading failed.</p>';
+                        ic.innerHTML = '<p>Context data loading failed.</p>';
                     }
+                    ic = null;
                 };
 
                 request.onerror = function () {
                     // There was a connection error of some sort
+                    var ic = document.getElementById('mab-contextinspector');
+                    ic.innerHTML = '<p>Context data loading failed.</p>';
+                    ic = null;
                 };
 
                 request.send();

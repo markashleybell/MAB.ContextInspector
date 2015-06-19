@@ -1,12 +1,24 @@
 ﻿#mab-contextinspector {
+    font-family: Helvetica, Arial, 'DejaVu Sans', 'Liberation Sans', Freesans, sans-serif;
+    font-size: 12px;
+    line-height: 1em;
+}
+
+#mab-contextinspector.inspector {
     position: absolute; 
-    width: 80%; 
+    width: 100%; 
     height: 550px; 
-    right: 10px; 
-    bottom: 30px; 
+    left: 0; 
+    bottom: 0; 
+    
     background-color: #fff; 
-    border: solid 2px #000;
+    border-top: solid 1px #000;
     display: none;
+    overflow: auto;
+}
+
+#mab-contextinspector.inspector.open {
+    display: block;
 }
 
 #mab-contextinspector-toggle {
@@ -27,6 +39,81 @@
 }
 
 #mab-contextinspector-toggle.open {
-    border-top-left-radius: 0;
-    border-top-right-radius: 0;
+    bottom: 550px;
+}
+
+#mab-contextinspector table {
+    margin: 0;
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: 100%;
+}
+
+#mab-contextinspector td, th {
+    border: 1px solid #ddd;
+    text-align: left;
+    vertical-align: top;
+    padding: 6px 30px 6px 10px;
+}
+
+#mab-contextinspector tr.data:nth-child(even) {
+    background-color: #F5F5F5;
+}
+
+#mab-contextinspector tr.data:hover {
+    background-color: #b0c3ff;
+}
+
+#mab-contextinspector #col-key {
+    width: 25%;
+}
+
+#mab-contextinspector #col-type {
+    width: 10%;
+}
+
+#mab-contextinspector #col-contents {
+    width: 65%;
+}
+            
+#mab-contextinspector pre {
+    outline: none;
+    padding: 0;
+    margin: 0;
+    font-size: 12px;
+    border: none;
+    line-height: 1em;
+    border-radius: 0;
+    overflow: visible;
+    background: none;
+}
+
+#mab-contextinspector .string {
+    color: green;
+}
+
+#mab-contextinspector .number {
+    color: #a70000;
+}
+
+#mab-contextinspector .boolean {
+    color: blue;
+}
+
+#mab-contextinspector .null {
+    color: magenta;
+}
+
+#mab-contextinspector .key {
+    color: #000000;
+}
+
+#mab-contextinspector .varkey, .vartype {
+    font-family: monospace;
+}
+
+#mab-contextinspector .main th {
+    background-color: #00487d;
+    border-color: #00487d;
+    color: #fff;
 }
