@@ -85,6 +85,7 @@
     line-height: 1em;
     border-radius: 0;
     overflow: visible;
+    background: none;
 }
 
 #mab-contextinspector .string {
