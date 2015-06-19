@@ -67,8 +67,6 @@ WriteLiteral(@">
             body {
                 margin: 0;
                 padding: 0;
-                font-family: Helvetica, Arial, 'DejaVu Sans', 'Liberation Sans', Freesans, sans-serif;
-                font-size: 12px;
             }
 
         </style>
@@ -77,27 +75,31 @@ WriteLiteral(@">
 WriteLiteral("        ");
 
             
-            #line 27 "..\..\Views\ContextInspector\Index.cshtml"
+            #line 25 "..\..\Views\ContextInspector\Index.cshtml"
    Write(Styles.Render("~/bundles/mab.contextinspector.css"));
 
             
             #line default
             #line hidden
-WriteLiteral("\r\n    </head>\r\n<body>\r\n");
+WriteLiteral("\r\n    </head>\r\n<body>\r\n    <div");
+
+WriteLiteral(" id=\"mab-contextinspector\"");
+
+WriteLiteral(">\r\n");
 
             
-            #line 30 "..\..\Views\ContextInspector\Index.cshtml"
-    
+            #line 29 "..\..\Views\ContextInspector\Index.cshtml"
+        
             
             #line default
             #line hidden
             
-            #line 30 "..\..\Views\ContextInspector\Index.cshtml"
-       Html.RenderAction("Data"); 
+            #line 29 "..\..\Views\ContextInspector\Index.cshtml"
+           Html.RenderAction("Data"); 
             
             #line default
             #line hidden
-WriteLiteral("\r\n    <script");
+WriteLiteral("\r\n    </div>\r\n    <script");
 
 WriteLiteral(" type=\"text/javascript\"");
 

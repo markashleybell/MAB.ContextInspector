@@ -19,15 +19,15 @@
             body {
                 margin: 0;
                 padding: 0;
-                font-family: Helvetica, Arial, 'DejaVu Sans', 'Liberation Sans', Freesans, sans-serif;
-                font-size: 12px;
             }
 
         </style>
         @Styles.Render("~/bundles/mab.contextinspector.css")
     </head>
 <body>
-    @{ Html.RenderAction("Data"); }
+    <div id="mab-contextinspector">
+        @{ Html.RenderAction("Data"); }
+    </div>
     <script type="text/javascript">
         var _CI_STANDALONE = true;
     </script>

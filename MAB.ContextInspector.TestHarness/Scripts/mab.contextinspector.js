@@ -73,6 +73,7 @@ var MAB = {
             if (!standalone) {
                 var container = document.createElement('div');
                 container.id = 'mab-contextinspector';
+                container.className = 'inspector';
 
                 document.body.appendChild(container);
 
