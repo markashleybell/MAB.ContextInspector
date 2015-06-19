@@ -28,21 +28,37 @@ var MAB = {
             return true;
         };
 
-        var removeItem = function (sKey, sPath, sDomain) {
+        var _removeItem = function (sKey, sPath, sDomain) {
             if (!this.hasItem(sKey)) { return false; }
             document.cookie = encodeURIComponent(sKey) + "=; expires=Thu, 01 Jan 1970 00:00:00 GMT" + (sDomain ? "; domain=" + sDomain : "") + (sPath ? "; path=" + sPath : "");
             return true;
         };
 
-        var hasItem = function (sKey) {
+        var _hasItem = function (sKey) {
             if (!sKey) { return false; }
             return (new RegExp("(?:^|;\\s*)" + encodeURIComponent(sKey).replace(/[\-\.\+\*]/g, "\\$&") + "\\s*\\=")).test(document.cookie);
         };
 
-        var keys = function () {
+        var _keys = function () {
             var aKeys = document.cookie.replace(/((?:^|\s*;)[^\=]+)(?=;|$)|^\s*|\s*(?:\=[^;]*)?(?:\1|$)/g, "").split(/\s*(?:\=[^;]*)?;\s*/);
             for (var nLen = aKeys.length, nIdx = 0; nIdx < nLen; nIdx++) { aKeys[nIdx] = decodeURIComponent(aKeys[nIdx]); }
             return aKeys;
+        };
+
+        var _toggleClass = function (el, className) {
+            if (el.classList) {
+                el.classList.toggle(className);
+            } else {
+                var classes = el.className.split(' ');
+                var existingIndex = classes.indexOf(className);
+
+                if (existingIndex >= 0)
+                    classes.splice(existingIndex, 1);
+                else
+                    classes.push(className);
+
+                el.className = classes.join(' ');
+            }
         };
 
         var _syntaxHighlight = function (json) {
@@ -86,10 +102,10 @@ var MAB = {
 
                 toggle.addEventListener('click', function (e) {
                     e.preventDefault();
-                    this.className = (this.className === 'open') ? '' : 'open';
+                    _toggleClass(this, 'open');
+                    var container = document.getElementById('mab-contextinspector');
+                    _toggleClass(container, 'open');
                 });
-
-                toggle.className = 'open';
 
                 var request = new XMLHttpRequest();
                 request.open('GET', '/contextinspector/data', true);
@@ -128,23 +144,6 @@ var MAB = {
 };
 
 MAB.CI.init(typeof _CI_STANDALONE !== 'undefined');
-
-
-
-//var inspector = $('<div id="mab-contextinspector"></div>');
-//var toggle = $('<a id="mab-contextinspector-toggle" href="#">Inspect Context</div>');
-
-//// <iframe src="/contextinspector" width="100%" height="100%" border="0" frameborder="0"></iframe>
-
-//inspector.load('/contextinspector/data');
-
-//$('body').append(inspector).append(toggle);
-
-//toggle.on('click', function (e) {
-//    e.preventDefault();
-//    inspector.toggle();
-//    toggle.toggleClass('open');
-//});
 
 //if (docCookies.getItem('mab.contextinspector.stayopen') == 1) {
 //    inspector.toggle();

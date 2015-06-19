@@ -13,8 +13,12 @@
     
     background-color: #fff; 
     border-top: solid 1px #000;
-    x-display: none;
+    display: none;
     overflow: auto;
+}
+
+#mab-contextinspector.inspector.open {
+    display: block;
 }
 
 #mab-contextinspector-toggle {
