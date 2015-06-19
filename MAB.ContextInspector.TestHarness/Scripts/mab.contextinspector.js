@@ -1,4 +1,5 @@
-﻿//  https://developer.mozilla.org/en-US/docs/Web/API/document.cookie
+﻿// Cookie functions adapted from:
+// https://developer.mozilla.org/en-US/docs/Web/API/document.cookie
 
 var MAB = {
     CI: (function () {
@@ -28,21 +29,10 @@ var MAB = {
             return true;
         };
 
-        var _removeItem = function (sKey, sPath, sDomain) {
+        var _removeCookie = function (sKey, sPath, sDomain) {
             if (!this.hasItem(sKey)) { return false; }
             document.cookie = encodeURIComponent(sKey) + "=; expires=Thu, 01 Jan 1970 00:00:00 GMT" + (sDomain ? "; domain=" + sDomain : "") + (sPath ? "; path=" + sPath : "");
             return true;
-        };
-
-        var _hasItem = function (sKey) {
-            if (!sKey) { return false; }
-            return (new RegExp("(?:^|;\\s*)" + encodeURIComponent(sKey).replace(/[\-\.\+\*]/g, "\\$&") + "\\s*\\=")).test(document.cookie);
-        };
-
-        var _keys = function () {
-            var aKeys = document.cookie.replace(/((?:^|\s*;)[^\=]+)(?=;|$)|^\s*|\s*(?:\=[^;]*)?(?:\1|$)/g, "").split(/\s*(?:\=[^;]*)?;\s*/);
-            for (var nLen = aKeys.length, nIdx = 0; nIdx < nLen; nIdx++) { aKeys[nIdx] = decodeURIComponent(aKeys[nIdx]); }
-            return aKeys;
         };
 
         var _toggleClass = function (el, className) {
@@ -62,7 +52,7 @@ var MAB = {
         };
 
         var _syntaxHighlight = function (json) {
-            if (json.indexOf('{') != -1)
+            if (json.indexOf('{') !== -1)
                 json = JSON.stringify(JSON.parse(json), undefined, 4);
 
             json = json.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
@@ -71,7 +61,7 @@ var MAB = {
                 if (/^"/.test(match)) {
                     if (/:$/.test(match)) {
                         cls = 'key';
-                        match = match.replace(/\"/gi, '')
+                        match = match.replace(/\"/gi, '');
                     } else {
                         cls = 'string';
                     }
@@ -87,6 +77,8 @@ var MAB = {
         var _init = function (standalone) {
             
             if (!standalone) {
+                var cookieKey = 'mab.contextinspector.stayopen';
+
                 var container = document.createElement('div');
                 container.id = 'mab-contextinspector';
                 container.className = 'inspector';
@@ -100,11 +92,22 @@ var MAB = {
 
                 document.body.appendChild(toggle);
 
+                if (parseInt(_getCookie(cookieKey), 10) === 1) {
+                    container.className = 'inspector open';
+                    toggle.className = 'open';
+                }
+
                 toggle.addEventListener('click', function (e) {
                     e.preventDefault();
                     _toggleClass(this, 'open');
                     var container = document.getElementById('mab-contextinspector');
                     _toggleClass(container, 'open');
+                    container = null;
+                    if (this.className.indexOf('open') !== -1) {
+                        _setCookie(cookieKey, 1);
+                    } else {
+                        _removeCookie(cookieKey);
+                    }
                 });
 
                 var request = new XMLHttpRequest();
@@ -144,10 +147,3 @@ var MAB = {
 };
 
 MAB.CI.init(typeof _CI_STANDALONE !== 'undefined');
-
-    //if (docCookies.getItem('mab.contextinspector.stayopen') == 1) {
-    //    inspector.toggle();
-    //    toggle.toggleClass('open');
-    //}
-
-    //docCookies.setItem('mab.contextinspector.stayopen', 1);
